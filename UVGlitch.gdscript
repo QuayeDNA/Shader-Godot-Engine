@@ -1,0 +1,19 @@
+shader_type canvas_item;
+
+uniform float glitch_amount : hint_range(0, 1) = 0.5;
+
+uniform float glitch_speed : hint_range(0, 10) = 1.0;
+
+uniform float time : hint_albedo;
+
+void fragment() {
+
+    vec2 uv = SCREEN_UV;
+
+    uv.x += sin(uv.y * 100.0 + time * glitch_speed) * glitch_amount;
+
+    uv.y += sin(uv.x * 100.0 + time * glitch_speed) * glitch_amount;
+
+    COLOR = texture(TEXTURE, uv);
+
+}
